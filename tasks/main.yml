@@ -6,8 +6,8 @@
     name: "{{ wtd_postfix_packages }}"
     state: "{{ wtd_postfix_state }}"
 
-- name: Include "{{ wtd_postfix_usage }}" tasks
-  include_tasks: "{{ wtd_postfix_usage }}.yml"
+- name: Include configuration
+  include_tasks: configure.yml
   when: wtd_postfix_state != "absent"
 
 - name: Enable and Start postfix

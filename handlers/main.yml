@@ -1,2 +1,8 @@
 ---
 # handlers/main.yml for postfix
+
+- name: Restart postfix
+  service:
+    name: postfix
+    state: restarted
+
