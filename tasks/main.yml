@@ -1,0 +1,18 @@
+---
+# tasks/main.yml for postfix
+
+- name: Set postfix to "{{ wtd_postfix_state }}"
+  package:
+    name: "{{ wtd_postfix_packages }}"
+    state: "{{ wtd_postfix_state }}"
+
+- name: Include "{{ wtd_postfix_usage }}" tasks
+  include_tasks: "{{ wtd_postfix_usage }}.yml"
+  when: wtd_postfix_state != "absent"
+
+- name: Enable and Start postfix
+  service:
+    name: postfix
+    state: started
+    enabled: yes
+  when: wtd_postfix_state != "absent"

@@ -1,0 +1,17 @@
+---
+# defaults/main.yml for postfix
+#
+# You can set the state to ["present"|"absent"|"latest"]
+wtd_postfix_state: "present"
+wtd_postfix_packages: "postfix"
+
+# Usage can be ["localmta"|"mailrelay"]
+wtd_postfix_usage: "localmta"
+
+wtd_postfix_config_path: "/etc/postfix"
+
+wtd_postfix_myhostname: "{{ ansible_hostname }}"
+wtd_postfix_mydomain: "{{ ansible_domain }}"
+wtd_postfix_interface: "all"
+
+# TODO: pcp-pmda-postfix + dependency for wtd.pcp should be implemented later
