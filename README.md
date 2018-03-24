@@ -1,16 +1,13 @@
 [![Build Status](https://travis-ci.org/while-true-do/ansible-role-postfix.svg?branch=master)](https://travis-ci.org/while-true-do/ansible-role-postfix)
 
 # Ansible Role: postfix
-| A short description **what** the role does goes here.
+| A role to install and configure postfix.
 
-<!-- 
--  Explain a bit more, if needed.
--  You can use bullets or write a small text
--->
+- can configure a local postfix mta
 
 ## Motivation
 
-<!-- Explain a bit **why** this role is needed. -->
+Mailing is one of the major communications for servers. Postfix is commonly used in RedHat Systems and CentOS.
 
 ## Installation
 
@@ -30,37 +27,45 @@ git clone https://github.com/while-true-do/ansible-role-postfix.git while-true-d
 
 Used Modules:
 
--   [module1](link)
--   [module2](link)
+-   [template_module](https://docs.ansible.com/ansible/latest/template_module.html)
+-   [include_module](https://docs.ansible.com/ansible/latest/include_tasks_module.html)
+-   [service_module](http://docs.ansible.com/ansible/latest/service_module.html)
+-   [packages_module](http://docs.ansible.com/ansible/latest/package_module.html)
 
 ## Dependencies
 
-<!--
-Describe, if other roles are needed and link them here.
-You also have to put the dependencies in the requirements.yml.
-
-```
-ansible-galaxy install -r requirements.yml
-```
-
-If nothing is needed, please write "None."
--->
+None.
 
 ## Role Variables
 
-<!-- 
-The variable files should explain itself and pasted/linked here.
-Explanation should be done **in** the files, if needed. 
--->
-
 ```yaml
 # defaults/main.yml
-foo: bar
-```
+# defaults/main.yml for postfix
+#
+# You can set the state to ["present"|"absent"|"latest"]
+wtd_postfix_state: "present"
+wtd_postfix_packages: "postfix"
 
-```yaml
-# vars/main.yml
-bar: foo
+# Usage can be ["localmta"]
+# TODO: Implement other modes like "mailrelay"
+wtd_postfix_usage: "localmta"
+
+wtd_postfix_config_path: "/etc/postfix"
+
+wtd_postfix_queue_directory: "/var/spool/postfix"
+wtd_postfix_data_directory: "/var/lib/postfix"
+wtd_postfix_mail_owner: "postfix"
+
+wtd_postfix_myhostname: "{{ ansible_hostname }}"
+wtd_postfix_mydomain: "{{ ansible_domain }}"
+wtd_postfix_myorigin: ""
+
+wtd_postfix_inet_interface: "all"
+wtd_postfix_relayhost: ""
+
+wtd_postfix_home_mailbox: "Maildir/"
+
+# TODO: pcp-pmda-postfix + dependency for wtd.pcp should be implemented later
 ```
 
 ## Example Playbook
@@ -71,14 +76,6 @@ Simple Example:
 - hosts: servers 
   roles:
     - { role: while-true-do.postfix }
-```
-
-Advanced Example:
-
-```yaml
-- hosts: servers 
-  roles:
-    - { role: while-true-do.postfix, foo: bar, bar: foo }
 ```
 
 ## Testing

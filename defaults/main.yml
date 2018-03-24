@@ -5,7 +5,8 @@
 wtd_postfix_state: "present"
 wtd_postfix_packages: "postfix"
 
-# Usage can be ["localmta"|"mailrelay"]
+# Usage can be ["localmta"]
+# TODO: Implement other modes like "mailrelay"
 wtd_postfix_usage: "localmta"
 
 wtd_postfix_config_path: "/etc/postfix"
