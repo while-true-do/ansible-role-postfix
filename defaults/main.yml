@@ -21,4 +21,6 @@ wtd_postfix_myorigin: ""
 wtd_postfix_inet_interface: "all"
 wtd_postfix_relayhost: ""
 
+wtd_postfix_home_mailbox: "Maildir/"
+
 # TODO: pcp-pmda-postfix + dependency for wtd.pcp should be implemented later
