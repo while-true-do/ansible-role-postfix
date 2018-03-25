@@ -5,23 +5,17 @@
 wtd_postfix_state: "present"
 wtd_postfix_packages: "postfix"
 
-# Usage can be ["localmta"]
-# TODO: Implement other modes like "mailrelay"
-wtd_postfix_usage: "localmta"
-
 wtd_postfix_config_path: "/etc/postfix"
 
 wtd_postfix_queue_directory: "/var/spool/postfix"
 wtd_postfix_data_directory: "/var/lib/postfix"
 wtd_postfix_mail_owner: "postfix"
 
-wtd_postfix_myhostname: "{{ ansible_hostname }}"
-wtd_postfix_mydomain: "{{ ansible_domain }}"
+wtd_postfix_myhostname: ""
+wtd_postfix_mydomain: ""
 wtd_postfix_myorigin: ""
 
-wtd_postfix_inet_interfaces: "all"
+wtd_postfix_inet_interfaces: "localhost"
 wtd_postfix_relayhost: ""
 
-wtd_postfix_home_mailbox: "Maildir/"
-
-# TODO: pcp-pmda-postfix + dependency for wtd.pcp should be implemented later
+wtd_postfix_home_mailbox: ""

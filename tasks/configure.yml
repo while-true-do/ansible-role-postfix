@@ -2,7 +2,7 @@
 - name: Configure main.cf
   template:
     src: main.cf.j2
-    dest: /etc/postfix/main.cf
+    dest: "{{ wtd_postfix_config_path }}/main.cf"
     owner: root
     group: root
     mode: 0644

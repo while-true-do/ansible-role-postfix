@@ -73,15 +73,23 @@ mail_owner = postfix
 # from gethostname(). $myhostname is used as a default value for many
 # other configuration parameters.
 #
+{% if wtd_postfix_myhostname %}
 myhostname = {{ wtd_postfix_myhostname }}
+{% else %}
+#myhostname = host.domain.tld
 #myhostname = virtual.domain.tld
+{% endif %}
 
 # The mydomain parameter specifies the local internet domain name.
 # The default is to use $myhostname minus the first component.
 # $mydomain is used as a default value for many other configuration
 # parameters.
 #
+{% if wtd_postfix_myhostname %}
 mydomain = {{ wtd_postfix_mydomain }}
+{% else %}
+#mydomain = domain.tld
+{% endif %}
 
 # SENDING MAIL
 # 
@@ -98,7 +106,11 @@ mydomain = {{ wtd_postfix_mydomain }}
 #
 {% if wtd_postfix_myorigin %}
 myorigin = {{ wtd_postfix_myorigin }}
+{% else %}
+#myorigin = $myhostname
+#myorigin = $mydomain
 {% endif %}
+
 # RECEIVING MAIL
 
 # The inet_interfaces parameter specifies the network interface
@@ -312,7 +324,7 @@ unknown_local_recipient_reject_code = 550
 # If you're connected via UUCP, see also the default_transport parameter.
 #
 {% if wtd_postfix_relayhost %}
-myorigin = {{ wtd_postfix_relayhost }}
+relayhost = {{ wtd_postfix_relayhost }}
 {% endif %}
 #relayhost = $mydomain
 #relayhost = [gateway.my.domain]
@@ -419,10 +431,13 @@ alias_database = hash:/etc/aliases
 # mailbox file is /var/spool/mail/user or /var/mail/user.  Specify
 # "Maildir/" for qmail-style delivery (the / is required).
 #
+{% if wtd_postfix_home_mailbox %}
 home_mailbox = {{ wtd_postfix_home_mailbox }}
+{% else %}
 #home_mailbox = Mailbox
 #home_mailbox = Maildir/
- 
+{% endif %}
+
 # The mail_spool_directory parameter specifies the directory where
 # UNIX-style mailboxes are kept. The default setting depends on the
 # system type.
