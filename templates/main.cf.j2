@@ -85,7 +85,7 @@ myhostname = {{ wtd_postfix_myhostname }}
 # $mydomain is used as a default value for many other configuration
 # parameters.
 #
-{% if wtd_postfix_myhostname %}
+{% if wtd_postfix_mydomain %}
 mydomain = {{ wtd_postfix_mydomain }}
 {% else %}
 #mydomain = domain.tld
