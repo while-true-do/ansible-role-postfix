@@ -11,16 +11,16 @@ Mailing is one of the major communications for servers. Postfix is commonly used
 
 ## Installation
 
-Install from [Ansible Galaxy](https://galaxy.ansible.com/while-true-do/postfix)
+Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/postfix)
 
 ```
-ansible-galaxy install while-true-do.postfix
+ansible-galaxy install while_true_do.postfix
 ```
 
 Install from [Github](https://github.com/while-true-do/ansible-role-postfix)
 
 ```
-git clone https://github.com/while-true-do/ansible-role-postfix.git while-true-do.postfix
+git clone https://github.com/while-true-do/ansible-role-postfix.git while_true_do.postfix
 ```
 
 ## Requirements
@@ -75,7 +75,7 @@ Simple Example:
 ```yaml
 - hosts: servers 
   roles:
-    - { role: while-true-do.postfix }
+    - { role: while_true_do.postfix }
 ```
 
 ## Testing
