@@ -1,6 +1,7 @@
 dependencies: []
 
 galaxy_info:
+  role_name: postfix
   author: while-true-do.org
   description: A role to install and configure postfix.
   company: while-true-do.org
